@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8"/>
+<title>Iconography</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+  body { margin: 0; padding: 22px 24px; background: var(--off-white); font-family: var(--font-sans); }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .ic { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 70px; padding: 12px 6px; background: #fff; border: 1px solid var(--border-subtle); border-radius: 10px; }
+  .ic svg { width: 22px; height: 22px; stroke-width: 1.5; color: var(--graphite); }
+  .ic.am svg { color: var(--amber); }
+  .lab { font-size: 10px; color: var(--fg-3); font-family: var(--font-mono); }
+  .note { margin-top: 12px; font-size: 11px; color: var(--fg-3); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="ic"><i data-lucide="mic"></i><span class="lab">mic</span></div>
+    <div class="ic am"><i data-lucide="circle-dot"></i><span class="lab">recording</span></div>
+    <div class="ic"><i data-lucide="user-round"></i><span class="lab">patient</span></div>
+    <div class="ic"><i data-lucide="file-text"></i><span class="lab">note</span></div>
+    <div class="ic"><i data-lucide="calendar"></i><span class="lab">calendar</span></div>
+    <div class="ic"><i data-lucide="shield-check"></i><span class="lab">lgpd</span></div>
+    <div class="ic"><i data-lucide="search"></i><span class="lab">search</span></div>
+    <div class="ic"><i data-lucide="settings"></i><span class="lab">settings</span></div>
+    <div class="ic"><i data-lucide="bell"></i><span class="lab">bell</span></div>
+    <div class="ic"><i data-lucide="play"></i><span class="lab">play</span></div>
+    <div class="ic"><i data-lucide="pause"></i><span class="lab">pause</span></div>
+    <div class="ic"><i data-lucide="check"></i><span class="lab">check</span></div>
+  </div>
+  <div class="note">Lucide via CDN · stroke 1.5 · graphite default · amber for active</div>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

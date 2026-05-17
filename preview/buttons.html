@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8"/>
+<title>Buttons</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  body { margin: 0; padding: 24px; background: var(--off-white); font-family: var(--font-sans); display: grid; grid-template-columns: 1fr 1fr; gap: 16px 22px; align-items: center; }
+  .grp { display: flex; flex-direction: column; gap: 10px; }
+  .lbl { font-size: 11px; color: var(--fg-3); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+  .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  button { font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; transition: all .2s var(--ease-out); border: 1px solid transparent; }
+  .btn-primary { background: var(--amber); color: var(--graphite); padding: 10px 20px; border-radius: 999px; box-shadow: var(--shadow-amber); }
+  .btn-primary.hover { background: #DC8E1B; box-shadow: var(--shadow-lg); }
+  .btn-secondary { background: transparent; color: var(--graphite); padding: 9px 18px; border-radius: 10px; border-color: var(--graphite); }
+  .btn-secondary.hover { background: var(--amber-soft); }
+  .btn-ghost { background: transparent; color: var(--graphite); padding: 9px 14px; border-radius: 10px; }
+  .btn-ghost.hover { background: var(--ink-50); }
+  .btn-danger { background: transparent; color: var(--danger); padding: 9px 18px; border-radius: 10px; border-color: var(--danger); }
+</style>
+</head>
+<body>
+  <div class="grp">
+    <span class="lbl">Primary · pill</span>
+    <div class="row">
+      <button class="btn-primary">Comece grátis</button>
+      <button class="btn-primary hover">Comece grátis</button>
+    </div>
+  </div>
+  <div class="grp">
+    <span class="lbl">Secondary · outlined</span>
+    <div class="row">
+      <button class="btn-secondary">Ver como funciona</button>
+      <button class="btn-secondary hover">Ver como funciona</button>
+    </div>
+  </div>
+  <div class="grp">
+    <span class="lbl">Ghost</span>
+    <div class="row">
+      <button class="btn-ghost">Cancelar</button>
+      <button class="btn-ghost hover">Cancelar</button>
+    </div>
+  </div>
+  <div class="grp">
+    <span class="lbl">Danger · outlined</span>
+    <div class="row">
+      <button class="btn-danger">Excluir paciente</button>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8"/>
+<title>Brand mark in motion</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  body { margin: 0; padding: 30px 28px; background: var(--off-white); font-family: var(--font-sans); display: flex; align-items: center; gap: 28px; }
+  .stage { background: var(--graphite); border-radius: 16px; padding: 28px 36px; }
+  svg .wave-path { stroke-dasharray: 200; stroke-dashoffset: 200; animation: draw 2.4s var(--ease-out) infinite; }
+  @keyframes draw { 0% { stroke-dashoffset: 200 } 60%, 100% { stroke-dashoffset: 0 } }
+  .meta { font-size: 12px; color: var(--fg-2); line-height: 1.6; }
+  .meta strong { color: var(--fg-1); display: block; margin-bottom: 4px; font-size: 13px; }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <svg viewBox="0 0 200 60" width="200" height="60">
+      <path class="wave-path" d="M6 36 C 22 14, 38 14, 56 32 S 90 50, 110 30 S 150 12, 194 32"
+            fill="none" stroke="#EF9F27" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+  <div class="meta">
+    <strong>Tilde / waveform</strong>
+    Brand-only animation. ~1.2s draw on app open. Never repeating, never decorative elsewhere.
+  </div>
+</body>
+</html>

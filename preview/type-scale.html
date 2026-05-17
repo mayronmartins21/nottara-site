@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8"/>
+<title>Type scale</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  body { margin: 0; padding: 22px 28px; background: var(--off-white); font-family: var(--font-sans); }
+  .row { display: grid; grid-template-columns: 90px 70px 1fr; gap: 14px; align-items: baseline; padding: 5px 0; border-bottom: 1px dashed var(--border-subtle); }
+  .row:last-child { border-bottom: 0; }
+  .tok { font-family: var(--font-mono); font-size: 11px; color: var(--fg-3); }
+  .px { font-family: var(--font-mono); font-size: 11px; color: var(--fg-2); }
+  .txt-display { font-family: var(--font-display); font-weight: 400; letter-spacing: -.02em; color: var(--fg-1); }
+  .txt-sans { font-family: var(--font-sans); color: var(--fg-1); }
+</style>
+</head>
+<body>
+  <div class="row"><span class="tok">display-xl</span><span class="px">64px</span><span class="txt-display" style="font-size:44px;line-height:1">Nottara</span></div>
+  <div class="row"><span class="tok">h1</span><span class="px">40px</span><span class="txt-display" style="font-size:34px;line-height:1.05">Headline serif</span></div>
+  <div class="row"><span class="tok">h3</span><span class="px">24px</span><span class="txt-sans" style="font-size:22px;font-weight:600">Subhead sans</span></div>
+  <div class="row"><span class="tok">body</span><span class="px">16px</span><span class="txt-sans" style="font-size:15px;color:var(--fg-2)">Texto corrente em Plus Jakarta Sans</span></div>
+  <div class="row"><span class="tok">caption</span><span class="px">13px</span><span class="txt-sans" style="font-size:13px;color:var(--fg-3)">Legenda discreta</span></div>
+  <div class="row"><span class="tok">overline</span><span class="px">12px</span><span class="txt-sans" style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:var(--fg-3)">Overline · etiqueta</span></div>
+</body>
+</html>

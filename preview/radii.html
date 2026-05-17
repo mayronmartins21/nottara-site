@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8"/>
+<title>Radii</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  body { margin: 0; padding: 24px; background: var(--off-white); font-family: var(--font-sans); display: flex; gap: 14px; align-items: flex-end; }
+  .item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .box { width: 84px; height: 84px; background: #fff; border: 1px solid var(--border-subtle); }
+  .lab { font-size: 11px; color: var(--fg-2); font-weight: 600; }
+  .tok { font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); }
+</style>
+</head>
+<body>
+  <div class="item"><div class="box" style="border-radius:4px"></div><span class="lab">xs</span><span class="tok">4</span></div>
+  <div class="item"><div class="box" style="border-radius:8px"></div><span class="lab">sm</span><span class="tok">8</span></div>
+  <div class="item"><div class="box" style="border-radius:10px"></div><span class="lab">md · input</span><span class="tok">10</span></div>
+  <div class="item"><div class="box" style="border-radius:12px"></div><span class="lab">lg · card</span><span class="tok">12</span></div>
+  <div class="item"><div class="box" style="border-radius:20px"></div><span class="lab">xl</span><span class="tok">20</span></div>
+  <div class="item"><div class="box" style="border-radius:28px"></div><span class="lab">2xl</span><span class="tok">28</span></div>
+  <div class="item"><div class="box" style="border-radius:999px"></div><span class="lab">pill · CTA</span><span class="tok">999</span></div>
+</body>
+</html>

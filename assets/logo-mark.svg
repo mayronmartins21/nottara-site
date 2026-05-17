@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-label="Nottara">
+  <rect width="1024" height="1024" rx="200" ry="200" fill="#EF9F27"></rect>
+  
+  <path d="M 175 615 C 290 555, 360 700, 500 620 S 770 540, 855 615" fill="none" stroke="#FAC775" stroke-width="44" stroke-linecap="round" stroke-linejoin="round"></path>
+  
+  <path d="M 165 510 C 290 380, 360 620, 500 470 S 770 380, 855 500" fill="none" stroke="#FFFFFF" stroke-width="56" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>

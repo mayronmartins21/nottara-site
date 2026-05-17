@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8"/>
+<title>Recording state</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  body { margin: 0; padding: 18px 22px; background: var(--graphite); font-family: var(--font-sans); color: var(--off-white); }
+  .panel { display: flex; align-items: center; gap: 16px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--amber); animation: pulse 1.6s var(--ease-in-out) infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1 } 50% { opacity: .35 } }
+  .lbl { font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--amber-light); }
+  .time { font-family: var(--font-mono); font-size: 22px; color: var(--off-white); }
+  .wave { flex: 1; display: flex; gap: 3px; align-items: center; height: 38px; }
+  .wave span { display: block; width: 3px; background: var(--amber); border-radius: 2px; animation: w .9s var(--ease-in-out) infinite alternate; }
+  .wave span:nth-child(1) { animation-delay: .0s; height: 14px } .wave span:nth-child(2){ animation-delay: .05s; height: 26px}
+  .wave span:nth-child(3) { animation-delay: .1s; height: 10px } .wave span:nth-child(4){ animation-delay: .15s; height: 32px}
+  .wave span:nth-child(5) { animation-delay: .2s; height: 18px } .wave span:nth-child(6){ animation-delay: .25s; height: 28px}
+  .wave span:nth-child(7) { animation-delay: .3s; height: 8px } .wave span:nth-child(8){ animation-delay: .35s; height: 22px}
+  .wave span:nth-child(9) { animation-delay: .4s; height: 30px } .wave span:nth-child(10){ animation-delay: .45s; height: 12px}
+  .wave span:nth-child(11) { animation-delay: .5s; height: 24px } .wave span:nth-child(12){ animation-delay: .55s; height: 16px}
+  .wave span:nth-child(13) { animation-delay: .6s; height: 30px } .wave span:nth-child(14){ animation-delay: .65s; height: 20px}
+  .wave span:nth-child(15) { animation-delay: .7s; height: 8px } .wave span:nth-child(16){ animation-delay: .75s; height: 26px}
+  .wave span:nth-child(17) { animation-delay: .8s; height: 18px } .wave span:nth-child(18){ animation-delay: .85s; height: 14px}
+  @keyframes w { from { transform: scaleY(0.65) } to { transform: scaleY(1) } }
+  .stop { background: transparent; border: 1.5px solid var(--off-white); color: var(--off-white); padding: 8px 18px; border-radius: 999px; font: inherit; font-weight: 600; font-size: 13px; cursor: pointer; }
+</style>
+</head>
+<body>
+  <div class="panel">
+    <span class="dot"></span>
+    <span class="lbl">Gravando</span>
+    <span class="time">12:43</span>
+    <div class="wave">
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <button class="stop">Encerrar</button>
+  </div>
+</body>
+</html>

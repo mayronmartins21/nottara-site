@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8"/>
+<title>Cards</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  body { margin: 0; padding: 22px; background: var(--off-white); font-family: var(--font-sans); display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .card { background: #fff; border: 1px solid var(--border-subtle); border-radius: 12px; padding: 18px; box-shadow: var(--shadow-md); }
+  .card.tinted { background: var(--amber-soft); border-color: transparent; box-shadow: none; }
+  .card.dark { background: var(--graphite); color: var(--off-white); border-color: var(--graphite); }
+  .head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+  .title { font-family: var(--font-display); font-size: 22px; line-height: 1.05; letter-spacing: -.01em; }
+  .meta { font-size: 11px; color: var(--fg-3); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+  .card.dark .meta { color: var(--ink-300); }
+  .body { font-size: 13px; color: var(--fg-2); line-height: 1.55; }
+  .card.dark .body { color: var(--ink-200); }
+  .badge { display: inline-flex; gap: 4px; align-items: center; font-size: 11px; padding: 3px 8px; border-radius: 999px; background: var(--amber-soft); color: var(--graphite); font-weight: 600; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="head"><span class="title">Mariana S.</span><span class="meta">qua, 14h</span></div>
+    <div class="body">Sessão 12 · Nota gerada e revisada. Próxima consulta em 7 dias.</div>
+  </div>
+  <div class="card tinted">
+    <div class="head"><span class="title">Sessão pronta</span><span class="badge">novo</span></div>
+    <div class="body">Sua transcrição da sessão de hoje está esperando revisão.</div>
+  </div>
+  <div class="card dark">
+    <div class="head"><span class="title" style="color:var(--off-white)">Conformidade LGPD</span></div>
+    <div class="body">Áudios processados em servidores no Brasil e apagados após a transcrição.</div>
+  </div>
+  <div class="card" style="border:1px dashed var(--border-default);box-shadow:none;background:transparent;">
+    <div class="head"><span class="title" style="color:var(--fg-3)">Adicionar paciente</span></div>
+    <div class="body">Estado vazio — borda tracejada, sem sombra.</div>
+  </div>
+</body>
+</html>

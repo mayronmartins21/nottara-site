@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8"/>
+<title>Shadows</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  body { margin: 0; padding: 30px 28px 36px; background: var(--off-white); font-family: var(--font-sans); display: flex; gap: 22px; align-items: flex-end; justify-content: space-between; }
+  .item { display: flex; flex-direction: column; align-items: center; gap: 14px; flex: 1; }
+  .box { width: 88px; height: 60px; background: #fff; border-radius: 12px; }
+  .lab { font-size: 11px; color: var(--fg-2); font-weight: 600; }
+  .tok { font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); }
+</style>
+</head>
+<body>
+  <div class="item"><div class="box" style="box-shadow: var(--shadow-xs)"></div><span class="lab">xs</span><span class="tok">--shadow-xs</span></div>
+  <div class="item"><div class="box" style="box-shadow: var(--shadow-sm)"></div><span class="lab">sm</span><span class="tok">--shadow-sm</span></div>
+  <div class="item"><div class="box" style="box-shadow: var(--shadow-md)"></div><span class="lab">md · cards</span><span class="tok">--shadow-md</span></div>
+  <div class="item"><div class="box" style="box-shadow: var(--shadow-lg)"></div><span class="lab">lg · modals</span><span class="tok">--shadow-lg</span></div>
+  <div class="item"><div class="box" style="background: var(--amber); box-shadow: var(--shadow-amber)"></div><span class="lab">amber · CTA</span><span class="tok">--shadow-amber</span></div>
+</body>
+</html>

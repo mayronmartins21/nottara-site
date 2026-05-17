@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8"/>
+<title>Spacing</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  body { margin: 0; padding: 22px 28px; background: var(--off-white); font-family: var(--font-sans); }
+  .row { display: grid; grid-template-columns: 70px 60px 1fr; gap: 12px; align-items: center; padding: 5px 0; }
+  .tok { font-family: var(--font-mono); font-size: 11px; color: var(--fg-3); }
+  .px { font-family: var(--font-mono); font-size: 11px; color: var(--fg-1); }
+  .bar { height: 14px; background: var(--amber); border-radius: 3px; }
+</style>
+</head>
+<body>
+  <div class="row"><span class="tok">space-1</span><span class="px">4</span><div class="bar" style="width:4px"></div></div>
+  <div class="row"><span class="tok">space-2</span><span class="px">8</span><div class="bar" style="width:8px"></div></div>
+  <div class="row"><span class="tok">space-3</span><span class="px">12</span><div class="bar" style="width:12px"></div></div>
+  <div class="row"><span class="tok">space-4</span><span class="px">16</span><div class="bar" style="width:16px"></div></div>
+  <div class="row"><span class="tok">space-6</span><span class="px">24</span><div class="bar" style="width:24px"></div></div>
+  <div class="row"><span class="tok">space-7</span><span class="px">32</span><div class="bar" style="width:32px"></div></div>
+  <div class="row"><span class="tok">space-9</span><span class="px">48</span><div class="bar" style="width:48px"></div></div>
+  <div class="row"><span class="tok">space-10</span><span class="px">64</span><div class="bar" style="width:64px"></div></div>
+  <div class="row"><span class="tok">space-12</span><span class="px">96</span><div class="bar" style="width:96px"></div></div>
+</body>
+</html>

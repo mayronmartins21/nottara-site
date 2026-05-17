@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 96" width="320" height="96" role="img" aria-label="Nottara">
+  <rect x="8" y="8" width="80" height="80" rx="18" ry="18" fill="#EF9F27"></rect>
+  <path d="M 22 60 C 30 54, 36 67, 48 60 S 70 53, 78 60" fill="none" stroke="#FAC775" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+  <path d="M 21 50 C 30 38, 36 60, 48 47 S 70 38, 78 48" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></path>
+  <text x="106" y="62" font-family="DM Serif Display, Georgia, serif" font-size="44" fill="#F7F5F0" letter-spacing="-1">Nottara</text>
+</svg>

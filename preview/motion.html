@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8"/>
+<title>Motion</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  body { margin: 0; padding: 22px 26px; background: var(--off-white); font-family: var(--font-sans); }
+  .grid { display: grid; grid-template-columns: 130px 1fr 90px; gap: 10px; align-items: center; row-gap: 14px; }
+  .tok { font-family: var(--font-mono); font-size: 11px; color: var(--fg-3); }
+  .track { position: relative; height: 14px; background: var(--ink-50); border-radius: 999px; overflow: hidden; }
+  .ball { position: absolute; top: 1px; left: 1px; width: 12px; height: 12px; border-radius: 50%; background: var(--amber); }
+  .ms { font-family: var(--font-mono); font-size: 11px; color: var(--fg-2); text-align: right; }
+  .b1 { animation: r1 2.4s var(--ease-out) infinite alternate; }
+  .b2 { animation: r2 2.4s var(--ease-in-out) infinite alternate; }
+  .b3 { animation: r3 2.4s linear infinite alternate; }
+  @keyframes r1 { from { left: 1px } to { left: calc(100% - 13px) } }
+  @keyframes r2 { from { left: 1px } to { left: calc(100% - 13px) } }
+  @keyframes r3 { from { left: 1px } to { left: calc(100% - 13px) } }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <span class="tok">ease-out</span>
+    <div class="track"><div class="ball b1"></div></div>
+    <span class="ms">200ms</span>
+
+    <span class="tok">ease-in-out</span>
+    <div class="track"><div class="ball b2"></div></div>
+    <span class="ms">400ms</span>
+
+    <span class="tok">linear</span>
+    <div class="track"><div class="ball b3"></div></div>
+    <span class="ms">120ms</span>
+  </div>
+</body>
+</html>

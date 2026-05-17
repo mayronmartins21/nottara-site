@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8"/>
+<title>List rows</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  body { margin: 0; padding: 16px 22px; background: var(--off-white); font-family: var(--font-sans); }
+  .list { background: #fff; border: 1px solid var(--border-subtle); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-sm); }
+  .row { display: grid; grid-template-columns: 36px 1fr auto; gap: 12px; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--border-subtle); }
+  .row:last-child { border-bottom: 0; }
+  .row.active { background: var(--amber-soft); }
+  .av { width: 36px; height: 36px; border-radius: 50%; background: var(--ink-100); display: flex; align-items: center; justify-content: center; font-weight: 600; color: var(--fg-2); font-size: 13px; }
+  .av.am { background: var(--amber); color: var(--graphite); }
+  .name { font-size: 14px; font-weight: 600; color: var(--fg-1); }
+  .sub { font-size: 12px; color: var(--fg-3); margin-top: 1px; }
+  .meta { font-size: 11px; color: var(--fg-3); font-weight: 600; }
+</style>
+</head>
+<body>
+  <div class="list">
+    <div class="row active"><div class="av am">MS</div><div><div class="name">Mariana Silva</div><div class="sub">Sessão 12 · 50 min</div></div><span class="meta">qua 14h</span></div>
+    <div class="row"><div class="av">RT</div><div><div class="name">Ricardo Tavares</div><div class="sub">Sessão 4 · 50 min</div></div><span class="meta">qui 16h</span></div>
+    <div class="row"><div class="av">JN</div><div><div class="name">Júlia Nascimento</div><div class="sub">Primeira consulta</div></div><span class="meta">sex 9h</span></div>
+  </div>
+</body>
+</html>

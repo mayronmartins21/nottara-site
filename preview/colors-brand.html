@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8"/>
+<title>Brand palette</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  body { margin: 0; padding: 24px; background: var(--off-white); }
+  .row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .swatch { border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border-subtle); }
+  .chip { height: 90px; }
+  .meta { padding: 10px 12px; background: #fff; }
+  .name { font-size: 13px; font-weight: 600; color: var(--fg-1); }
+  .hex { font-family: var(--font-mono); font-size: 11px; color: var(--fg-3); margin-top: 2px; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="swatch"><div class="chip" style="background:#EF9F27"></div><div class="meta"><div class="name">Amber</div><div class="hex">#EF9F27</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#FAC775"></div><div class="meta"><div class="name">Light Amber</div><div class="hex">#FAC775</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#FAEEDA"></div><div class="meta"><div class="name">Soft Amber</div><div class="hex">#FAEEDA</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#1A1A18"></div><div class="meta"><div class="name">Graphite</div><div class="hex">#1A1A18</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#F7F5F0;border-bottom:1px solid var(--border-subtle)"></div><div class="meta"><div class="name">Off-white</div><div class="hex">#F7F5F0</div></div></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8"/>
+<title>Badges</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  body { margin: 0; padding: 26px; background: var(--off-white); font-family: var(--font-sans); display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .b { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; }
+  .b.amber { background: var(--amber-soft); color: var(--graphite); }
+  .b.success { background: var(--success-soft); color: var(--success); }
+  .b.warning { background: var(--warning-soft); color: var(--warning); }
+  .b.danger { background: var(--danger-soft); color: var(--danger); }
+  .b.info { background: var(--info-soft); color: var(--info); }
+  .b.solid { background: var(--graphite); color: var(--off-white); }
+  .b.outline { background: transparent; color: var(--fg-2); border: 1px solid var(--border-default); }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+</style>
+</head>
+<body>
+  <span class="b amber"><span class="dot"></span>Gravando</span>
+  <span class="b success"><span class="dot"></span>Sincronizado</span>
+  <span class="b warning">Revisar</span>
+  <span class="b danger">Falhou</span>
+  <span class="b info">LGPD</span>
+  <span class="b solid">12 sessões</span>
+  <span class="b outline">Rascunho</span>
+  <span class="b amber">Novo</span>
+</body>
+</html>

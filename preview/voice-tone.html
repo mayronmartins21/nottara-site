@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8"/>
+<title>Voice & tone</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  body { margin: 0; padding: 22px 26px; background: var(--off-white); font-family: var(--font-sans); }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .ex { padding: 12px 14px; border-radius: 10px; }
+  .yes { background: #fff; border-left: 3px solid var(--success); }
+  .no { background: #fff; border-left: 3px solid var(--danger); }
+  .lab { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--fg-3); margin-bottom: 4px; }
+  .yes .lab { color: var(--success); }
+  .no .lab { color: var(--danger); }
+  .copy { font-size: 14px; color: var(--fg-1); line-height: 1.45; }
+  .head { font-family: var(--font-display); font-size: 18px; margin-bottom: 12px; }
+</style>
+</head>
+<body>
+  <div class="head">Voz · você, sereno, sem emoji</div>
+  <div class="pair">
+    <div class="ex yes"><div class="lab">Faça</div><div class="copy">"Grave a sessão. A gente cuida do resto."</div></div>
+    <div class="ex no"><div class="lab">Evite</div><div class="copy">"Bora gravar essa sessão? 🎙️"</div></div>
+    <div class="ex yes"><div class="lab">Faça</div><div class="copy">"Suas notas, prontas em minutos."</div></div>
+    <div class="ex no"><div class="lab">Evite</div><div class="copy">"Suas Notas Prontas em Minutos!"</div></div>
+  </div>
+</body>
+</html>
