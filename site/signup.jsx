@@ -2,7 +2,7 @@
 // Integrado com Supabase Auth + tabela profiles
 
 const SUPABASE_URL = 'https://gkkscbhpfavcgvubrbxi.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdra3NjYmhwZmF2Y2d2dWJyYnhpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMxMTI5MjUsImV4cCI6MjA1ODY4ODkyNX0.IrUATcHqDXJiWFsYRiJbJ1hhOvHqn1Y8oNyRuV0YZ0s';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdra3NjYmhwZmF2Y2d2dWJyYnhpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5ODE3MjgsImV4cCI6MjA5MjU1NzcyOH0.gVnzXibnqzIU13OsxxMvhQN7tkiY_cN11zAUzsWnV38';
 
 // ── Supabase helpers ──
 const supabaseHeaders = {
