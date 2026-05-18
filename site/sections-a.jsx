@@ -39,7 +39,7 @@ function Nav({ onLogin }) {
         </nav>
         <div className="nt-nav-cta" style={{ display: 'flex', gap: 12, alignItems: 'center', fontSize: 14, fontWeight: 600 }}>
           <a className="nt-entrar" href="#" onClick={(e) => { e.preventDefault(); onLogin && onLogin(); }} style={{ color: N.graphite, textDecoration: 'none', cursor: 'pointer' }}>Entrar</a>
-          <a href="cadastro.html" style={{ all: 'unset', cursor: 'pointer', padding: '11px 20px', borderRadius: 999, background: N.amber, color: N.graphite, boxShadow: '0 6px 16px -6px rgba(239,159,39,.55)', whiteSpace: 'nowrap' }}>Começar grátis</a>
+          <a className="nt-nav-cta-btn" href="cadastro.html" style={{ all: 'unset', cursor: 'pointer', padding: '11px 20px', borderRadius: 999, background: N.amber, color: N.graphite, boxShadow: '0 6px 16px -6px rgba(239,159,39,.55)', whiteSpace: 'nowrap' }}>Começar grátis</a>
           <button
             className="nt-hamburger"
             aria-label="Abrir menu"

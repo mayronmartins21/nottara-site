@@ -53,10 +53,18 @@
     .nt-hamburger { display: none; }
 
     @media (max-width: 900px) {
-      /* Nav: hide desktop links + "Entrar", show hamburger */
-      .nt-nav-links, .nt-entrar { display: none !important; }
+      /* Nav: hide desktop links + "Entrar" + "Começar grátis" CTA, show hamburger only */
+      .nt-nav-links, .nt-entrar, .nt-nav-cta-btn { display: none !important; }
       .nt-hamburger { display: inline-flex !important; }
-      .nt-nav-inner { padding: 14px 20px !important; }
+      .nt-nav-inner {
+        height: 60px !important;
+        padding: 0 20px !important;
+      }
+      /* Shrink logo to fit the 60px navbar */
+      .nt-nav-inner > a:first-child { gap: 10px !important; }
+      .nt-nav-inner > a:first-child > img { height: 28px !important; }
+      .nt-nav-inner > a:first-child > span { font-size: 22px !important; }
+      .nt-hamburger { width: 38px !important; height: 38px !important; margin-left: 0 !important; }
 
       /* Reduce section horizontal padding to 20px everywhere */
       section { padding-left: 20px !important; padding-right: 20px !important; }
