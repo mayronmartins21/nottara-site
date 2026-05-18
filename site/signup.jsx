@@ -38,6 +38,15 @@ async function insertProfile(userId, data) {
   return res;
 }
 
+async function checkDuplicate(field, value) {
+  const res = await fetch(
+    `${SUPABASE_URL}/rest/v1/profiles?${field}=eq.${encodeURIComponent(value)}&select=id`,
+    { headers: supabaseHeaders }
+  );
+  const data = await res.json();
+  return Array.isArray(data) && data.length > 0;
+}
+
 const ESTADOS_BR = [
   ['AC', 'Acre'], ['AL', 'Alagoas'], ['AP', 'Amapá'], ['AM', 'Amazonas'],
   ['BA', 'Bahia'], ['CE', 'Ceará'], ['DF', 'Distrito Federal'], ['ES', 'Espírito Santo'],
@@ -48,6 +57,35 @@ const ESTADOS_BR = [
   ['SP', 'São Paulo'], ['SE', 'Sergipe'], ['TO', 'Tocantins'],
 ];
 
+// ── Validações ──
+const isEmail = (s) => /^\S+@\S+\.\S+$/.test(String(s || '').trim());
+
+const validateCpf = (cpf) => {
+  const d = cpf.replace(/\D/g, '');
+  if (d.length !== 11) return false;
+  if (/^(\d)\1+$/.test(d)) return false;
+  let sum = 0;
+  for (let i = 0; i < 9; i++) sum += parseInt(d[i]) * (10 - i);
+  let r = (sum * 10) % 11;
+  if (r === 10 || r === 11) r = 0;
+  if (r !== parseInt(d[9])) return false;
+  sum = 0;
+  for (let i = 0; i < 10; i++) sum += parseInt(d[i]) * (11 - i);
+  r = (sum * 10) % 11;
+  if (r === 10 || r === 11) r = 0;
+  return r === parseInt(d[10]);
+};
+
+const validateSenha = (s) => {
+  const errs = [];
+  if (!s || s.length < 8) errs.push('mínimo 8 caracteres');
+  if (!/[A-Z]/.test(s)) errs.push('uma letra maiúscula');
+  if (!/[a-z]/.test(s)) errs.push('uma letra minúscula');
+  if (!/[0-9]/.test(s)) errs.push('um número');
+  if (!/[^A-Za-z0-9]/.test(s)) errs.push('um caractere especial (!@#$%...)');
+  return errs;
+};
+
 // ── Helpers ──
 const maskCpf = (s) => {
   const d = String(s || '').replace(/\D/g, '').slice(0, 11);
@@ -57,7 +95,6 @@ const maskCpf = (s) => {
   if (d.length > 9)  out = d.slice(0,3) + '.' + d.slice(3,6) + '.' + d.slice(6,9) + '-' + d.slice(9);
   return out;
 };
-const isEmail = (s) => /^\S+@\S+\.\S+$/.test(String(s || '').trim());
 
 // ── Form primitives ──
 const fieldWrap = { display: 'flex', flexDirection: 'column', gap: 6 };
@@ -103,7 +140,7 @@ function TextField({ label, value, onChange, type = 'text', placeholder, error, 
   );
 }
 
-function PasswordField({ label, value, onChange, placeholder, error, autoComplete }) {
+function PasswordField({ label, value, onChange, placeholder, error, autoComplete, hint }) {
   const [show, setShow] = React.useState(false);
   const [focused, setFocused] = React.useState(false);
   return (
@@ -147,6 +184,7 @@ function PasswordField({ label, value, onChange, placeholder, error, autoComplet
         </button>
       </div>
       {error && <div style={errorStyle}>{error}</div>}
+      {hint && !error && <div style={{ fontSize: 11.5, color: N.ink400, marginTop: 4, lineHeight: 1.4 }}>{hint}</div>}
     </div>
   );
 }
@@ -220,8 +258,10 @@ function PrimaryButton({ children, onClick, type = 'button', disabled, loading }
 function SignupHeader() {
   return (
     <header style={{ position: 'relative', zIndex: 2, padding: '20px 28px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-      <NLogo size={28}/>
-      <a href="Nottara Institucional.html" style={{ fontSize: 13, fontWeight: 500, color: N.ink500, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+      <a href="/" style={{ textDecoration: 'none' }}>
+        <NLogo size={28}/>
+      </a>
+      <a href="/" style={{ fontSize: 13, fontWeight: 500, color: N.ink500, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
         <span style={{ fontSize: 16, lineHeight: 1 }}>←</span> Voltar ao site
       </a>
     </header>
@@ -279,9 +319,8 @@ function Step1({ data, update, onNext }) {
     const errs = {};
     if (!data.nome.trim()) errs.nome = 'Informe seu nome completo.';
     if (!isEmail(data.email)) errs.email = 'E-mail inválido.';
-    if (!data.senha || data.senha.length < 8) errs.senha = 'Mínimo de 8 caracteres.';
-    if (!/[A-Z]/.test(data.senha)) errs.senha = 'Use ao menos uma letra maiúscula.';
-    if (!/[0-9]/.test(data.senha)) errs.senha = 'Use ao menos um número.';
+    const senhaErrs = validateSenha(data.senha);
+    if (senhaErrs.length > 0) errs.senha = `A senha precisa ter: ${senhaErrs.join(', ')}.`;
     if (data.confirma !== data.senha) errs.confirma = 'As senhas não coincidem.';
     setErrors(errs);
     if (Object.keys(errs).length === 0) onNext();
@@ -314,9 +353,10 @@ function Step1({ data, update, onNext }) {
           label="Senha"
           value={data.senha}
           onChange={(v) => update('senha', v)}
-          placeholder="Mínimo 8 caracteres, 1 maiúscula e 1 número"
+          placeholder="Crie uma senha segura"
           autoComplete="new-password"
           error={errors.senha}
+          hint="Mínimo 8 caracteres, com maiúscula, minúscula, número e caractere especial."
         />
         <PasswordField
           label="Confirmar senha"
@@ -350,7 +390,7 @@ function Step2({ data, update, onNext }) {
   const submit = async (e) => {
     e.preventDefault();
     const errs = {};
-    if (data.cpf.replace(/\D/g, '').length !== 11) errs.cpf = 'Informe um CPF válido.';
+    if (!validateCpf(data.cpf)) errs.cpf = 'CPF inválido. Verifique os números informados.';
     if (!data.crp.trim()) errs.crp = 'Informe seu número de CRP.';
     if (!data.estado) errs.estado = 'Selecione o estado do CRP.';
     setErrors(errs);
@@ -360,9 +400,32 @@ function Step2({ data, update, onNext }) {
     setApiError('');
 
     try {
-      // 1. Criar usuário no Supabase Auth
-      const authResult = await signUpUser(data.email, data.senha);
+      // 1. Verificar duplicidade de e-mail
+      const emailDup = await checkDuplicate('email', data.email);
+      if (emailDup) {
+        setApiError('Este e-mail já possui um cadastro no Nottara. Entre em contato pelo WhatsApp se precisar de ajuda.');
+        setLoading(false);
+        return;
+      }
 
+      // 2. Verificar duplicidade de CPF
+      const cpfDup = await checkDuplicate('cpf', data.cpf.replace(/\D/g, ''));
+      if (cpfDup) {
+        setApiError('Este CPF já está associado a um cadastro. Entre em contato pelo WhatsApp se precisar de ajuda.');
+        setLoading(false);
+        return;
+      }
+
+      // 3. Verificar duplicidade de CRP
+      const crpDup = await checkDuplicate('crp', data.crp.trim());
+      if (crpDup) {
+        setApiError('Este CRP já está associado a um cadastro. Entre em contato pelo WhatsApp se precisar de ajuda.');
+        setLoading(false);
+        return;
+      }
+
+      // 4. Criar usuário no Supabase Auth
+      const authResult = await signUpUser(data.email, data.senha);
       if (authResult.error) {
         if (authResult.error.message?.includes('already registered')) {
           setApiError('Este e-mail já está cadastrado. Entre em contato pelo WhatsApp.');
@@ -380,7 +443,7 @@ function Step2({ data, update, onNext }) {
         return;
       }
 
-      // 2. Inserir perfil na tabela profiles
+      // 5. Inserir perfil
       const profileRes = await insertProfile(userId, data);
       if (!profileRes.ok) {
         setApiError('Erro ao salvar seus dados. Entre em contato pelo WhatsApp.');
@@ -388,7 +451,7 @@ function Step2({ data, update, onNext }) {
         return;
       }
 
-      // 3. Sucesso — avançar para step 3
+      // 6. Sucesso
       onNext();
     } catch (err) {
       setApiError('Erro de conexão. Verifique sua internet e tente novamente.');
@@ -438,7 +501,7 @@ function Step2({ data, update, onNext }) {
         )}
         <div style={{ marginTop: 8 }}>
           <PrimaryButton type="submit" loading={loading}>
-            {loading ? 'Enviando...' : 'Enviar solicitação →'}
+            {loading ? 'Verificando...' : 'Enviar solicitação →'}
           </PrimaryButton>
         </div>
         <div style={{ textAlign: 'center', fontSize: 12.5, color: N.ink500, lineHeight: 1.5, marginTop: 6 }}>
@@ -501,14 +564,12 @@ function SignupFlow() {
     cpf: '', crp: '', estado: '', especialidade: '',
   });
 
-  // Pré-preencher e-mail via ?email= na URL
   React.useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const email = params.get('email');
     if (email) setData(d => ({ ...d, email }));
   }, []);
 
-  // Scroll para o topo ao mudar de step
   React.useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [step]);
