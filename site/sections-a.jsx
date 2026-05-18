@@ -58,31 +58,29 @@ function Nav({ onLogin }) {
         </div>
       </div>
 
-      {drawerOpen && (
-        <React.Fragment>
-          <div className="nt-drawer-backdrop" onClick={() => setDrawerOpen(false)}/>
-          <aside className="nt-drawer" role="dialog" aria-modal="true" aria-label="Menu de navegação">
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 28 }}>
-              <NLogo size={26}/>
-              <button
-                aria-label="Fechar menu"
-                onClick={() => setDrawerOpen(false)}
-                style={{ width: 36, height: 36, borderRadius: 999, border: 'none', background: 'rgba(26,26,24,.06)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={N.graphite} strokeWidth="2.2" strokeLinecap="round"><path d="M6 6l12 12M6 18L18 6"/></svg>
-              </button>
-            </div>
-            <nav style={{ display: 'flex', flexDirection: 'column', gap: 4, marginBottom: 'auto' }}>
-              {links.map(([l, h]) => (
-                <a key={l} href={h} onClick={(e) => goToLink(e, h)} style={{ padding: '14px 0', fontSize: 17, fontWeight: 500, color: N.graphite, textDecoration: 'none', borderBottom: `1px solid ${N.ink100}` }}>{l}</a>
-              ))}
-            </nav>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 24 }}>
-              <a href="#" onClick={(e) => { e.preventDefault(); setDrawerOpen(false); onLogin && onLogin(); }} style={{ textAlign: 'center', padding: '14px 18px', borderRadius: 12, border: `1.5px solid ${N.graphite}`, color: N.graphite, fontWeight: 600, fontSize: 15, textDecoration: 'none' }}>Entrar</a>
-              <a href="cadastro.html" style={{ textAlign: 'center', padding: '14px 18px', borderRadius: 12, background: N.amber, color: N.graphite, fontWeight: 700, fontSize: 15, textDecoration: 'none', boxShadow: '0 12px 28px -10px rgba(239,159,39,.55)' }}>Começar grátis</a>
-            </div>
-          </aside>
-        </React.Fragment>
+      {drawerOpen && ReactDOM.createPortal(
+        <aside className="nt-drawer" role="dialog" aria-modal="true" aria-label="Menu de navegação">
+          <div className="nt-drawer-top">
+            <NLogo size={26}/>
+            <button
+              aria-label="Fechar menu"
+              onClick={() => setDrawerOpen(false)}
+              style={{ width: 40, height: 40, borderRadius: 999, border: 'none', background: 'rgba(26,26,24,.06)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={N.graphite} strokeWidth="2.2" strokeLinecap="round"><path d="M6 6l12 12M6 18L18 6"/></svg>
+            </button>
+          </div>
+          <nav className="nt-drawer-nav">
+            {links.map(([l, h]) => (
+              <a key={l} href={h} onClick={(e) => goToLink(e, h)}>{l}</a>
+            ))}
+          </nav>
+          <div className="nt-drawer-cta">
+            <a href="#" onClick={(e) => { e.preventDefault(); setDrawerOpen(false); onLogin && onLogin(); }} style={{ textAlign: 'center', padding: '14px 18px', borderRadius: 12, border: `1.5px solid ${N.graphite}`, color: N.graphite, fontWeight: 600, fontSize: 15, textDecoration: 'none' }}>Entrar</a>
+            <a href="cadastro.html" style={{ textAlign: 'center', padding: '14px 18px', borderRadius: 12, background: N.amber, color: N.graphite, fontWeight: 700, fontSize: 15, textDecoration: 'none', boxShadow: '0 12px 28px -10px rgba(239,159,39,.55)' }}>Começar grátis</a>
+          </div>
+        </aside>,
+        document.body
       )}
     </header>
   );

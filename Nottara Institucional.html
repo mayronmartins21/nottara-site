@@ -125,7 +125,8 @@
 
     /* ============================================================
        HERO — mobile-first redesign (≤768px)
-       Phone mockup on top, then badge, title, sub, stacked buttons.
+       Order: Badge → Title → Sub-1 → Phone → Sub-2 → Buttons → Micro.
+       Achieved via display:contents on nested wrappers, then `order:`.
        Above 768px the desktop 2-col layout is preserved.
        ============================================================ */
     @media (max-width: 768px) {
@@ -134,43 +135,70 @@
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
-        gap: 28px !important;
+        gap: 0 !important;
       }
-      .nt-hero-text {
-        order: 2 !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        text-align: center !important;
+      /* Promote children of nested wrappers to flex items of .nt-hero-grid */
+      .nt-hero-text, .nt-hero-sub-wrap { display: contents !important; }
+
+      /* Ordering */
+      .nt-pill          { order: 1 !important; align-self: center !important; }
+      .nt-hero-h1       { order: 2 !important; }
+      .nt-hero-sub-1    { order: 3 !important; }
+      .nt-hero-phone-wrap { order: 4 !important; }
+      .nt-hero-sub-2    { order: 5 !important; }
+      .nt-hero-buttons  { order: 6 !important; }
+      .nt-hero-micro    { order: 7 !important; }
+
+      /* Spacing between ordered blocks */
+      .nt-hero-h1       { margin: 18px 0 14px !important; }
+      .nt-hero-sub-1    { margin: 0 0 28px !important; }
+      .nt-hero-phone-wrap { margin: 0 0 28px !important; }
+      .nt-hero-sub-2    { margin: 0 !important; }
+      .nt-hero-buttons  { margin: 28px 0 0 !important; }
+      .nt-hero-micro    { margin: 18px 0 0 !important; }
+
+      /* Element styling */
+      .nt-pill { font-size: 11.5px !important; padding: 6px 12px !important; }
+      .nt-hero-h1 {
         width: 100% !important;
+        text-align: center !important;
+        font-size: clamp(26px, 8vw, 34px) !important;
+        line-height: 1.12 !important;
       }
+      .nt-hero-sub-1 {
+        width: 100% !important;
+        max-width: 100% !important;
+        text-align: center !important;
+        font-size: 18px !important;
+        font-weight: 600 !important;
+      }
+      .nt-hero-sub-2 {
+        width: 100% !important;
+        max-width: 100% !important;
+        text-align: center !important;
+        font-size: 16px !important;
+      }
+
+      /* Phone mock — 85% of viewport width, capped at native 320px */
       .nt-hero-phone-wrap {
-        order: 1 !important;
         width: 100% !important;
         min-height: 0 !important;
         display: flex !important;
         justify-content: center !important;
-        height: calc(75vw * 660 / 320) !important;
+        height: calc(min(85vw, 320px) * 660 / 320) !important;
         overflow: visible !important;
       }
       .nt-hero-phone-wrap > div {
-        transform: scale(calc(75vw / 320px)) !important;
+        transform: scale(min(calc(85vw / 320px), 1)) !important;
         transform-origin: top center !important;
       }
-      .nt-pill { font-size: 11.5px !important; padding: 6px 12px !important; }
-      .nt-hero-h1 {
-        font-size: clamp(28px, 8.5vw, 36px) !important;
-        margin: 18px 0 14px !important;
-        line-height: 1.1 !important;
-      }
-      .nt-hero-sub-wrap { max-width: 100% !important; }
-      .nt-hero-sub-1 { font-size: 16px !important; font-weight: 600 !important; }
-      .nt-hero-sub-2 { font-size: 16px !important; margin-top: 6px !important; }
+
+      /* Buttons stacked full-width */
       .nt-hero-buttons {
+        display: flex !important;
         flex-direction: column !important;
         width: 100% !important;
         gap: 10px !important;
-        margin-top: 28px !important;
       }
       .nt-hero-buttons > a {
         display: block !important;
@@ -180,9 +208,26 @@
         padding-top: 15px !important;
         padding-bottom: 15px !important;
       }
+
+      /* Microcopy centered */
       .nt-hero-micro {
+        width: 100% !important;
         justify-content: center !important;
-        margin-top: 18px !important;
+      }
+
+      /* Credibility bar — vertical centered list with amber bullets */
+      .nt-credbar { padding: 20px 24px !important; }
+      .nt-credbar > div {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 10px !important;
+      }
+
+      /* CTA Final form — stacked, full width, no overflow */
+      .nt-cta { padding: 80px 24px !important; }
+      .nt-cta-form input,
+      .nt-cta-form button {
+        box-sizing: border-box !important;
       }
     }
 
@@ -204,25 +249,45 @@
       .nt-h2-title { font-size: clamp(26px, 8vw, 34px) !important; }
     }
 
-    /* Mobile drawer */
-    .nt-drawer-backdrop {
-      position: fixed; inset: 0; z-index: 60;
-      background: rgba(26,26,24,.5);
-      backdrop-filter: blur(4px);
-      animation: nt-fade-in .22s ease-out;
-    }
+    /* Mobile drawer — full-screen overlay */
     .nt-drawer {
-      position: fixed; top: 0; right: 0; z-index: 61;
-      width: min(320px, 86vw); height: 100%;
+      position: fixed; inset: 0; z-index: 61;
+      width: 100%; height: 100%;
       background: var(--off-white);
-      box-shadow: -20px 0 60px -20px rgba(26,26,24,.3);
       display: flex; flex-direction: column;
-      padding: 24px 24px 32px;
-      animation: nt-drawer-in .28s cubic-bezier(.2,.7,.2,1);
+      padding: 22px 24px 32px;
+      animation: nt-drawer-in .25s ease-out;
+      overflow-y: auto;
     }
     @keyframes nt-drawer-in {
-      from { transform: translateX(100%); }
-      to   { transform: none; }
+      from { opacity: 0; transform: translateY(-6px); }
+      to   { opacity: 1; transform: none; }
+    }
+    .nt-drawer-top {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nt-drawer-nav {
+      flex: 1;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      gap: 48px;
+      padding: 32px 0;
+    }
+    .nt-drawer-nav a {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: var(--graphite);
+      text-decoration: none;
+      line-height: 1;
+      transition: color .15s ease;
+    }
+    .nt-drawer-nav a:hover { color: var(--amber); }
+    .nt-drawer-cta {
+      display: flex; flex-direction: column; gap: 10px;
+      padding-top: 16px;
+      border-top: 1px solid var(--ink-100);
     }
   </style>
   <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
