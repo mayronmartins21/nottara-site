@@ -125,7 +125,7 @@ function PhoneMock({ children, scale = 1, w = 320, h = 660 }) {
 // ── Pill / tag ──
 function Pill({ children, color = N.amber }) {
   return (
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '7px 14px', borderRadius: 999, background: N.amberSoft, fontSize: 12, fontWeight: 600, color: N.graphite, letterSpacing: '.02em', fontFamily: N.sans }}>
+    <span className="nt-pill" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '7px 14px', borderRadius: 999, background: N.amberSoft, fontSize: 12, fontWeight: 600, color: N.graphite, letterSpacing: '.02em', fontFamily: N.sans, maxWidth: '100%' }}>
       <span style={{ width: 6, height: 6, borderRadius: 999, background: color }}/>{children}
     </span>
   );
@@ -139,7 +139,7 @@ function H2({ eyebrow, title, sub, light = false, align = 'left', maxWidth = 760
   return (
     <div style={{ textAlign: align, maxWidth, margin: align === 'center' ? '0 auto' : 0 }}>
       {eyebrow && (<div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: eb, fontFamily: N.sans, marginBottom: 18 }}>{eyebrow}</div>)}
-      <h2 style={{ fontFamily: N.serif, fontSize: 'clamp(34px, 4.4vw, 56px)', lineHeight: 1.04, letterSpacing: '-0.02em', margin: 0, color: fg, fontWeight: 400, textWrap: 'balance' }}>{title}</h2>
+      <h2 className="nt-h2-title" style={{ fontFamily: N.serif, fontSize: 'clamp(34px, 4.4vw, 56px)', lineHeight: 1.04, letterSpacing: '-0.02em', margin: 0, color: fg, fontWeight: 400, textWrap: 'balance' }}>{title}</h2>
       {sub && (<p style={{ fontSize: 18, color: fg2, lineHeight: 1.55, margin: '20px 0 0', fontFamily: N.sans }}>{sub}</p>)}
     </div>
   );

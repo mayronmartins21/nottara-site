@@ -9,11 +9,11 @@ function Seguranca() {
     { icon: 'server', t: 'Servidores no Brasil', d: 'Infraestrutura AWS sa-east-1 (São Paulo). Seus dados nunca saem do território nacional.' },
   ];
   return (
-    <section id="security" style={{ padding: '110px 28px', background: N.graphite, color: N.off, fontFamily: N.sans, position: 'relative', overflow: 'hidden' }}>
+    <section id="security" className="nt-security" style={{ padding: '110px 28px', background: N.graphite, color: N.off, fontFamily: N.sans, position: 'relative', overflow: 'hidden' }}>
       <WaveBackdrop opacity={0.05} color={N.amberLight}/>
       <div style={{ position: 'relative', maxWidth: 1240, margin: '0 auto' }}>
         <H2 light eyebrow="Segurança e conformidade" title="Construído para o padrão clínico brasileiro" sub="Infraestrutura, criptografia e protocolos pensados desde o primeiro dia para o sigilo profissional do psicólogo."/>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 18, marginTop: 56 }}>
+        <div className="nt-security-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 18, marginTop: 56 }}>
           {pillars.map(p => (
             <div key={p.t} style={{ background: 'rgba(247,245,240,.05)', border: '1px solid rgba(247,245,240,.1)', borderRadius: 18, padding: 26, backdropFilter: 'blur(8px)' }}>
               <div style={{ width: 44, height: 44, borderRadius: 12, background: 'rgba(239,159,39,.18)', color: N.amber, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon name={p.icon} size={22} color={N.amber}/></div>
@@ -75,17 +75,17 @@ function FAQ() {
   ];
   const [open, setOpen] = React.useState(0);
   return (
-    <section id="faq" style={{ padding: '96px 28px', background: '#fff', fontFamily: N.sans }}>
+    <section id="faq" className="nt-faq" style={{ padding: '96px 28px', background: '#fff', fontFamily: N.sans }}>
       <div style={{ maxWidth: 880, margin: '0 auto' }}>
         <H2 eyebrow="FAQ" title="Dúvidas frequentes" align="center"/>
         <div style={{ marginTop: 48, display: 'flex', flexDirection: 'column', gap: 8 }}>
           {qs.map(([q, a], i) => (
             <div key={q} style={{ background: N.off, borderRadius: 14, overflow: 'hidden', border: `1px solid ${N.ink100}` }}>
-              <button onClick={() => setOpen(open === i ? -1 : i)} style={{ all: 'unset', cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px 24px', width: 'calc(100% - 48px)', fontWeight: 700, fontSize: 16, color: N.graphite }}>
+              <button onClick={() => setOpen(open === i ? -1 : i)} className="nt-faq-btn" style={{ all: 'unset', cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 16, padding: '20px 24px', width: 'calc(100% - 48px)', fontWeight: 700, fontSize: 16, color: N.graphite }}>
                 <span>{q}</span>
                 <Icon name={open === i ? 'minus' : 'plus'} size={20} color={N.amber}/>
               </button>
-              {open === i && (<div style={{ padding: '0 24px 22px', fontSize: 15, color: N.ink700, lineHeight: 1.6 }}>{a}</div>)}
+              {open === i && (<div className="nt-faq-answer" style={{ padding: '0 24px 22px', fontSize: 15, color: N.ink700, lineHeight: 1.6 }}>{a}</div>)}
             </div>
           ))}
         </div>
@@ -104,14 +104,15 @@ function CTAFinal() {
     { bg: '#3D6A8A', i: 'MV' },
   ];
   return (
-    <section id="cta" style={{ padding: '110px 28px', background: N.amber, color: N.graphite, fontFamily: N.sans, position: 'relative', overflow: 'hidden' }}>
+    <section id="cta" className="nt-cta" style={{ padding: '110px 28px', background: N.amber, color: N.graphite, fontFamily: N.sans, position: 'relative', overflow: 'hidden' }}>
       <WaveBackdrop opacity={0.12} color={N.graphite}/>
       <div style={{ position: 'relative', maxWidth: 920, margin: '0 auto', textAlign: 'center' }}>
-        <h2 style={{ fontFamily: N.serif, fontSize: 'clamp(44px, 6vw, 72px)', lineHeight: 1.02, letterSpacing: '-0.025em', margin: '0 auto 18px', color: N.graphite, fontWeight: 400, maxWidth: 780, textWrap: 'balance' }}>
+        <h2 className="nt-cta-h" style={{ fontFamily: N.serif, fontSize: 'clamp(44px, 6vw, 72px)', lineHeight: 1.02, letterSpacing: '-0.025em', margin: '0 auto 18px', color: N.graphite, fontWeight: 400, maxWidth: 780, textWrap: 'balance' }}>
           Comece hoje.<br/>14 dias grátis.
         </h2>
         <p style={{ fontSize: 19, color: 'rgba(26,26,24,.78)', margin: '0 auto', maxWidth: 560, lineHeight: 1.5 }}>Sem cartão de crédito. Cancele quando quiser.</p>
         <form
+          className="nt-cta-form"
           style={{ display: 'flex', gap: 8, maxWidth: 520, margin: '36px auto 0', background: '#fff', borderRadius: 14, padding: 6, boxShadow: '0 18px 40px -16px rgba(26,26,24,.25)' }}
           onSubmit={e => {
             e.preventDefault();
@@ -123,7 +124,7 @@ function CTAFinal() {
           <input name="email" type="email" placeholder="seu@email.com.br" style={{ flex: 1, border: 'none', outline: 'none', padding: '14px 18px', fontSize: 16, fontFamily: N.sans, background: 'transparent', color: N.graphite }}/>
           <button style={{ all: 'unset', cursor: 'pointer', padding: '14px 22px', borderRadius: 10, background: N.graphite, color: N.off, fontWeight: 700, fontSize: 15 }}>Criar conta grátis</button>
         </form>
-        <div style={{ marginTop: 28, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 14, flexWrap: 'wrap' }}>
+        <div className="nt-cta-social" style={{ marginTop: 28, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 14, flexWrap: 'wrap' }}>
           <div style={{ display: 'flex' }}>
             {avatars.map((a, i) => (
               <div key={i} style={{ width: 30, height: 30, borderRadius: 999, background: a.bg, color: '#fff', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', border: `2px solid ${N.amber}`, marginLeft: i === 0 ? 0 : -8, fontFamily: N.sans, letterSpacing: '.02em' }}>{a.i}</div>
@@ -141,9 +142,9 @@ function CTAFinal() {
 // 12) FOOTER
 function Footer() {
   return (
-    <footer style={{ background: N.graphite, color: N.off, padding: '64px 28px 32px', fontFamily: N.sans }}>
-      <div style={{ maxWidth: 1240, margin: '0 auto', display: 'grid', gridTemplateColumns: '1.6fr 1fr 1fr 1fr', gap: 40, alignItems: 'start' }}>
-        <div>
+    <footer className="nt-footer" style={{ background: N.graphite, color: N.off, padding: '64px 28px 32px', fontFamily: N.sans }}>
+      <div className="nt-footer-grid" style={{ maxWidth: 1240, margin: '0 auto', display: 'grid', gridTemplateColumns: '1.6fr 1fr 1fr 1fr', gap: 40, alignItems: 'start' }}>
+        <div className="nt-footer-brand">
           <NLogo light/>
           <p style={{ fontFamily: N.serif, fontSize: 22, color: N.amberLight, fontWeight: 400, marginTop: 18, letterSpacing: '-0.005em' }}>Escuta. Registra. Cuida.</p>
           <p style={{ color: 'rgba(247,245,240,.6)', fontSize: 13, lineHeight: 1.6, marginTop: 14, maxWidth: 320 }}>O copiloto clínico para psicólogos brasileiros.</p>
@@ -187,7 +188,7 @@ function Footer() {
           </div>
         ))}
       </div>
-      <div style={{ maxWidth: 1240, margin: '48px auto 0', paddingTop: 22, borderTop: '1px solid rgba(247,245,240,.1)', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12, fontSize: 12, color: 'rgba(247,245,240,.5)' }}>
+      <div className="nt-footer-bottom" style={{ maxWidth: 1240, margin: '48px auto 0', paddingTop: 22, borderTop: '1px solid rgba(247,245,240,.1)', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12, fontSize: 12, color: 'rgba(247,245,240,.5)' }}>
         <span>© 2026 Nottara · CNPJ 53.408.235/0001-83</span>
         <span>Feito no Brasil · Servidores em São Paulo</span>
       </div>

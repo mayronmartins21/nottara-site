@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Nottara — O copiloto clínico do psicólogo brasileiro</title>
+  <meta name="description" content="Grave, transcreva e gere notas clínicas com IA. Conformidade LGPD e CFP, servidores no Brasil. 14 dias grátis."/>
+  <link rel="icon" type="image/png" href="assets/logo-icon-192.png"/>
+  <link rel="stylesheet" href="colors_and_type.css"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; overflow-x: hidden; max-width: 100%; }
+    body { background: var(--off-white); color: var(--graphite); font-family: 'Plus Jakarta Sans', -apple-system, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    img, video { max-width: 100%; height: auto; }
+    a { color: inherit; }
+    button { font-family: inherit; }
+    h1, h2, h3 { text-wrap: balance; }
+    /* Smooth scroll on anchors */
+    html { scroll-behavior: smooth; }
+    /* Fade-in on scroll */
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity .8s ease, transform .8s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* Decorative wave backdrops — seamless infinite drift */
+    .wave-layer {
+      position: absolute; inset: 0;
+      width: 200%; height: 100%;
+      will-change: transform;
+    }
+    .wave-layer-a { animation: wave-drift 14s linear infinite; }
+    .wave-layer-b { animation: wave-drift 20s linear infinite reverse; }
+    @keyframes wave-drift {
+      from { transform: translate3d(0, 0, 0); }
+      to   { transform: translate3d(-50%, 0, 0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .wave-layer-a, .wave-layer-b { animation: none; }
+    }
+    /* Modal animations */
+    @keyframes nt-fade-in { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes nt-modal-in {
+      from { opacity: 0; transform: translateY(8px) scale(.98); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    /* ============================================================
+       RESPONSIVE — Mobile-first overrides
+       Tablet (≤900px): stack 2-col layouts, collapse nav into hamburger
+       Phone  (≤560px): collapse all grids to single column
+       ============================================================ */
+
+    /* Hamburger is hidden on desktop */
+    .nt-hamburger { display: none; }
+
+    @media (max-width: 900px) {
+      /* Nav: hide desktop links + "Entrar", show hamburger */
+      .nt-nav-links, .nt-entrar { display: none !important; }
+      .nt-hamburger { display: inline-flex !important; }
+      .nt-nav-inner { padding: 14px 20px !important; }
+
+      /* Reduce section horizontal padding to 20px everywhere */
+      section { padding-left: 20px !important; padding-right: 20px !important; }
+
+      /* Hero */
+      .nt-hero { padding-top: 48px !important; padding-bottom: 64px !important; }
+      .nt-hero-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+      .nt-hero-h1 { font-size: clamp(36px, 9vw, 48px) !important; margin-top: 20px !important; }
+      .nt-hero-sub-1 { font-size: 18px !important; }
+      .nt-hero-sub-2 { font-size: 16px !important; }
+      .nt-hero-phone-wrap { min-height: 0 !important; }
+      .nt-pill { white-space: normal !important; max-width: 100% !important; line-height: 1.5 !important; }
+
+      /* Credibility bar */
+      .nt-credbar { padding: 14px 20px !important; font-size: 12px !important; }
+      .nt-credbar-sep { display: none !important; }
+
+      /* O que é o Nottara */
+      .nt-oquee { padding: 64px 20px !important; }
+      .nt-oquee-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+      .nt-oquee-card { padding: 32px 26px !important; }
+      .nt-oquee-bridge { margin-top: 56px !important; }
+
+      /* Cenário — callout */
+      .nt-cenario-callout { padding: 32px 24px !important; border-radius: 20px !important; }
+      .nt-cenario-quote { font-size: 22px !important; }
+      .nt-cenario-closing { margin-top: 56px !important; }
+      .nt-cenario-closing-h { font-size: clamp(24px, 5vw, 32px) !important; }
+      .nt-cenario-closing-p { font-size: 16px !important; }
+
+      /* Problema */
+      .nt-problema { padding: 64px 20px !important; }
+      .nt-problema-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+      .nt-problema-img { height: 280px !important; }
+      .nt-problema-badge { right: 0 !important; bottom: -16px !important; padding: 12px 14px !important; }
+
+      /* Como funciona */
+      .nt-how { padding: 64px 20px !important; }
+      .nt-how-line { display: none !important; }
+      .nt-how-list { grid-template-columns: repeat(2, 1fr) !important; gap: 36px 20px !important; }
+      .nt-how-step-title { font-size: 22px !important; }
+
+      /* Funcionalidades */
+      .nt-features { padding: 64px 20px !important; }
+      .nt-features-outer { grid-template-columns: 1fr !important; gap: 40px !important; }
+      .nt-features-grid { grid-template-columns: repeat(2, 1fr) !important; }
+      .nt-features-phones { gap: 12px !important; }
+
+      /* Segurança */
+      .nt-security { padding: 72px 20px !important; }
+      .nt-security-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 14px !important; }
+
+      /* FAQ */
+      .nt-faq { padding: 64px 20px !important; }
+      .nt-faq-btn { padding: 18px 18px !important; font-size: 15px !important; width: calc(100% - 36px) !important; }
+      .nt-faq-answer { padding: 0 18px 18px !important; }
+
+      /* CTA Final */
+      .nt-cta { padding: 80px 20px !important; }
+      .nt-cta-h { font-size: clamp(36px, 9vw, 52px) !important; }
+      .nt-cta-form { flex-direction: column !important; gap: 8px !important; padding: 8px !important; max-width: 100% !important; }
+      .nt-cta-form input { width: 100% !important; }
+      .nt-cta-form button { width: 100% !important; padding: 14px !important; }
+      .nt-cta-social { gap: 12px !important; }
+
+      /* Footer */
+      .nt-footer { padding: 56px 20px 28px !important; }
+      .nt-footer-grid { grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
+      .nt-footer-brand { grid-column: 1 / -1 !important; }
+      .nt-footer-bottom { flex-direction: column !important; gap: 8px !important; text-align: center !important; }
+
+      /* Section H2 sizes (global helper) */
+      .nt-h2-title { font-size: clamp(28px, 7vw, 40px) !important; }
+    }
+
+    @media (max-width: 560px) {
+      /* Stack everything to single column on phones */
+      .nt-how-list { grid-template-columns: 1fr !important; gap: 32px !important; }
+      .nt-features-grid { grid-template-columns: 1fr !important; }
+      .nt-security-grid { grid-template-columns: 1fr !important; }
+      .nt-footer-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+      .nt-footer-brand { grid-column: auto !important; }
+
+      /* Carousel of phone screens — show one, smaller */
+      .nt-features-phones > :nth-child(2) { display: none !important; }
+
+      /* CTA social row */
+      .nt-cta-social { flex-direction: column !important; }
+
+      /* Hero pill — let it breathe */
+      .nt-pill { font-size: 11px !important; padding: 6px 12px !important; }
+
+      /* Section H2 — tighter on phones */
+      .nt-h2-title { font-size: clamp(26px, 8vw, 34px) !important; }
+      .nt-hero-h1 { font-size: clamp(32px, 10vw, 44px) !important; }
+    }
+
+    /* Mobile drawer */
+    .nt-drawer-backdrop {
+      position: fixed; inset: 0; z-index: 60;
+      background: rgba(26,26,24,.5);
+      backdrop-filter: blur(4px);
+      animation: nt-fade-in .22s ease-out;
+    }
+    .nt-drawer {
+      position: fixed; top: 0; right: 0; z-index: 61;
+      width: min(320px, 86vw); height: 100%;
+      background: var(--off-white);
+      box-shadow: -20px 0 60px -20px rgba(26,26,24,.3);
+      display: flex; flex-direction: column;
+      padding: 24px 24px 32px;
+      animation: nt-drawer-in .28s cubic-bezier(.2,.7,.2,1);
+    }
+    @keyframes nt-drawer-in {
+      from { transform: translateX(100%); }
+      to   { transform: none; }
+    }
+  </style>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel" src="site/parts.jsx"></script>
+  <script type="text/babel" src="site/sections-a.jsx"></script>
+  <script type="text/babel" src="site/sections-b.jsx"></script>
+  <script type="text/babel" src="site/auth-modal.jsx"></script>
+  <script type="text/babel">
+    function Site() {
+      const [loginOpen, setLoginOpen] = React.useState(false);
+
+      // fade-in observer
+      React.useEffect(() => {
+        const els = document.querySelectorAll('section');
+        els.forEach(s => s.classList.add('reveal'));
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+        }, { threshold: 0.08 });
+        els.forEach(s => io.observe(s));
+        return () => io.disconnect();
+      }, []);
+
+      return (
+        <React.Fragment>
+          <Nav onLogin={() => setLoginOpen(true)}/>
+          <Hero/>
+          <CredBar/>
+          <OQueE/>
+          <Cenario/>
+          <Problema/>
+          <ComoFunciona/>
+          <Funcionalidades/>
+          <Seguranca/>
+          <FAQ/>
+          <CTAFinal/>
+          <Footer/>
+          <LoginModal open={loginOpen} onClose={() => setLoginOpen(false)}/>
+        </React.Fragment>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<Site/>);
+  </script>
+</body>
+</html>

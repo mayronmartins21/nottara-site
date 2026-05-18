@@ -505,7 +505,8 @@ function Step2({ data, update, onNext }) {
           </PrimaryButton>
         </div>
         <div style={{ textAlign: 'center', fontSize: 12.5, color: N.ink500, lineHeight: 1.5, marginTop: 6 }}>
-          Seus dados são protegidos pela LGPD.        </div>
+          Seus dados são protegidos pela LGPD e nunca serão compartilhados.
+        </div>
       </form>
     </Card>
   );
