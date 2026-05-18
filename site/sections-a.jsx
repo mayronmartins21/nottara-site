@@ -94,12 +94,12 @@ function Hero() {
     <section id="top" className="nt-hero" style={{ position: 'relative', padding: '72px 28px 96px', overflow: 'hidden', background: N.off, fontFamily: N.sans }}>
       <WaveBackdrop opacity={0.08}/>
       <div className="nt-hero-grid" style={{ position: 'relative', maxWidth: 1240, margin: '0 auto', display: 'grid', gridTemplateColumns: '1.1fr 1fr', gap: 72, alignItems: 'center' }}>
-        <div>
+        <div className="nt-hero-text">
           <Pill>Conformidade LGPD · CFP · Servidores no Brasil</Pill>
           <h1 className="nt-hero-h1" style={{ fontFamily: N.serif, fontSize: 'clamp(48px, 6vw, 76px)', lineHeight: 1.0, letterSpacing: '-0.025em', margin: '24px 0 18px', color: N.graphite, fontWeight: 400, textWrap: 'balance' }}>
             O copiloto clínico do <em style={{ fontStyle: 'italic', color: N.amber }}>psicólogo</em> brasileiro
           </h1>
-          <div style={{ maxWidth: 560 }}>
+          <div className="nt-hero-sub-wrap" style={{ maxWidth: 560 }}>
             <p className="nt-hero-sub-1" style={{ fontSize: 22, color: N.ink700, lineHeight: 1.45, margin: 0, fontWeight: 600, letterSpacing: '-0.005em' }}>
               A escuta é sua. A documentação é nossa.
             </p>
@@ -107,11 +107,11 @@ function Hero() {
               O Nottara organiza suas notas clínicas para que você esteja inteiro em cada sessão — do início ao fim.
             </p>
           </div>
-          <div style={{ display: 'flex', gap: 12, marginTop: 32, flexWrap: 'wrap' }}>
-            <a href="cadastro.html" style={{ all: 'unset', cursor: 'pointer', padding: '15px 26px', borderRadius: 12, background: N.amber, color: N.graphite, fontWeight: 700, fontSize: 16, boxShadow: '0 12px 28px -10px rgba(239,159,39,.55)' }}>Criar conta grátis</a>
-            <a href="#how" style={{ all: 'unset', cursor: 'pointer', padding: '14px 24px', borderRadius: 12, border: `1.5px solid ${N.graphite}`, color: N.graphite, fontWeight: 600, fontSize: 16 }}>Ver como funciona</a>
+          <div className="nt-hero-buttons" style={{ display: 'flex', gap: 12, marginTop: 32, flexWrap: 'wrap' }}>
+            <a href="cadastro.html" style={{ all: 'unset', cursor: 'pointer', padding: '15px 26px', borderRadius: 12, background: N.amber, color: N.graphite, fontWeight: 700, fontSize: 16, boxShadow: '0 12px 28px -10px rgba(239,159,39,.55)', textAlign: 'center' }}>Criar conta grátis</a>
+            <a href="#how" style={{ all: 'unset', cursor: 'pointer', padding: '14px 24px', borderRadius: 12, border: `1.5px solid ${N.graphite}`, color: N.graphite, fontWeight: 600, fontSize: 16, textAlign: 'center' }}>Ver como funciona</a>
           </div>
-          <div style={{ marginTop: 24, display: 'flex', gap: 22, fontSize: 13, color: N.ink500, flexWrap: 'wrap' }}>
+          <div className="nt-hero-micro" style={{ marginTop: 24, display: 'flex', gap: 22, fontSize: 13, color: N.ink500, flexWrap: 'wrap' }}>
             <span>✓ Sem cartão</span><span>✓ Cancele quando quiser</span>
           </div>
         </div>

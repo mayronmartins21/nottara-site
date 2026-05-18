@@ -61,15 +61,6 @@
       /* Reduce section horizontal padding to 20px everywhere */
       section { padding-left: 20px !important; padding-right: 20px !important; }
 
-      /* Hero */
-      .nt-hero { padding-top: 48px !important; padding-bottom: 64px !important; }
-      .nt-hero-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
-      .nt-hero-h1 { font-size: clamp(36px, 9vw, 48px) !important; margin-top: 20px !important; }
-      .nt-hero-sub-1 { font-size: 18px !important; }
-      .nt-hero-sub-2 { font-size: 16px !important; }
-      .nt-hero-phone-wrap { min-height: 0 !important; }
-      .nt-pill { white-space: normal !important; max-width: 100% !important; line-height: 1.5 !important; }
-
       /* Credibility bar */
       .nt-credbar { padding: 14px 20px !important; font-size: 12px !important; }
       .nt-credbar-sep { display: none !important; }
@@ -132,6 +123,69 @@
       .nt-h2-title { font-size: clamp(28px, 7vw, 40px) !important; }
     }
 
+    /* ============================================================
+       HERO — mobile-first redesign (≤768px)
+       Phone mockup on top, then badge, title, sub, stacked buttons.
+       Above 768px the desktop 2-col layout is preserved.
+       ============================================================ */
+    @media (max-width: 768px) {
+      .nt-hero { padding: 28px 24px 56px !important; }
+      .nt-hero-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 28px !important;
+      }
+      .nt-hero-text {
+        order: 2 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        width: 100% !important;
+      }
+      .nt-hero-phone-wrap {
+        order: 1 !important;
+        width: 100% !important;
+        min-height: 0 !important;
+        display: flex !important;
+        justify-content: center !important;
+        height: calc(75vw * 660 / 320) !important;
+        overflow: visible !important;
+      }
+      .nt-hero-phone-wrap > div {
+        transform: scale(calc(75vw / 320px)) !important;
+        transform-origin: top center !important;
+      }
+      .nt-pill { font-size: 11.5px !important; padding: 6px 12px !important; }
+      .nt-hero-h1 {
+        font-size: clamp(28px, 8.5vw, 36px) !important;
+        margin: 18px 0 14px !important;
+        line-height: 1.1 !important;
+      }
+      .nt-hero-sub-wrap { max-width: 100% !important; }
+      .nt-hero-sub-1 { font-size: 16px !important; font-weight: 600 !important; }
+      .nt-hero-sub-2 { font-size: 16px !important; margin-top: 6px !important; }
+      .nt-hero-buttons {
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 10px !important;
+        margin-top: 28px !important;
+      }
+      .nt-hero-buttons > a {
+        display: block !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
+        padding-top: 15px !important;
+        padding-bottom: 15px !important;
+      }
+      .nt-hero-micro {
+        justify-content: center !important;
+        margin-top: 18px !important;
+      }
+    }
+
     @media (max-width: 560px) {
       /* Stack everything to single column on phones */
       .nt-how-list { grid-template-columns: 1fr !important; gap: 32px !important; }
@@ -146,12 +200,8 @@
       /* CTA social row */
       .nt-cta-social { flex-direction: column !important; }
 
-      /* Hero pill — let it breathe */
-      .nt-pill { font-size: 11px !important; padding: 6px 12px !important; }
-
       /* Section H2 — tighter on phones */
       .nt-h2-title { font-size: clamp(26px, 8vw, 34px) !important; }
-      .nt-hero-h1 { font-size: clamp(32px, 10vw, 44px) !important; }
     }
 
     /* Mobile drawer */
